@@ -9,6 +9,7 @@ module.exports = ( sequelize , Sequelize) => {
             main: { type: Sequelize.INTEGER(), allowNull: true, field: 'main' },
             order: { type: Sequelize.INTEGER(), allowNull: true, field: 'order' },
             slug_catagory: { type: Sequelize.STRING(150), allowNull: true, field: 'slug_catagory' },
+            alt: { type: Sequelize.STRING(100), allowNull: true, field: 'alt' },
         },
     {
         tableName: 'catagories' 

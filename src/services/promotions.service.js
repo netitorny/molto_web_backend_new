@@ -51,7 +51,7 @@ async function find(language) {
   try {
     console.log("this is promotions/:language service");
     console.log("language :", language);
-    var arr_attribute = ["id", "month"];
+    var arr_attribute = ["id", "month","alt"];
 
     if (language == "en") {
       arr_attribute.push(

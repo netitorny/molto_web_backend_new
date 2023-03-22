@@ -7,7 +7,7 @@ module.exports = ( sequelize , Sequelize) => {
             folder: { type: Sequelize.STRING(150), allowNull: true, field: 'folder' },
             image_path: { type: Sequelize.STRING(150), allowNull: true, field: 'image_path' },
             main: { type: Sequelize.BOOLEAN(), allowNull: true, field: 'main' },
-            
+            alt: { type: Sequelize.STRING(150), allowNull: true, field: 'alt' }
         },
     {
         tableName: 'reviews_image' 
