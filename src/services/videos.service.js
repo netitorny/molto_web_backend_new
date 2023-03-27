@@ -12,7 +12,8 @@ async function find(language){
         var arr_attribute = [
             'id',
             'video_path',
-            'img_path'
+            'img_path',
+            'alt'
         ]
         if(language == 'en'){
             arr_attribute.push(
@@ -32,8 +33,11 @@ async function find(language){
         console.log("arr_attribute => ",arr_attribute)
         var results = await videos.findAll(
             {
-                attributes:arr_attribute
-            }
+                attributes:arr_attribute,
+                order:[
+                    ['order','ASC']
+                ]
+            },
         )
         
         return results

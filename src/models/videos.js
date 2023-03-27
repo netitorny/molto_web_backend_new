@@ -8,6 +8,8 @@ module.exports = ( sequelize , Sequelize) => {
             img_path: { type: Sequelize.STRING(100), allowNull: true, field: 'img_path' },
             name_en: { type: Sequelize.STRING(100), allowNull: true, field: 'name_en' },
             name_cn: { type: Sequelize.STRING(100), allowNull: true, field: 'name_cn' },
+            alt: { type: Sequelize.STRING(100), allowNull: true, field: 'alt' },
+            order: { type: Sequelize.INTEGER(), allowNull: true, field: 'order' },
         },
     {
         tableName: 'videos' 
