@@ -131,6 +131,7 @@ async function filtersProducts(id_catagories,language){
             'main_color',
             'folder',
             'main',
+            'alt'
         ]
         var product_lang
         if(language == 'en'){
@@ -206,6 +207,7 @@ async function filtersProductsWithSale(id_catagories,language){
             'main_color',
             'folder',
             'main',
+            'alt'
         ]
 
         if(language == 'en'){
@@ -282,7 +284,8 @@ async function findByProductId(id_product,language) {
             'main_color',
             'folder',
             'main',
-            'out_of_stock'
+            'out_of_stock',
+            'alt'
         ]
 
         if(language == 'en'){

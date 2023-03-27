@@ -23,6 +23,16 @@ router.get('/findonetest', async (req,res) => {
     }
 })
 
+router.patch('/update-alt-image-table', async (req,res) => {
+    try {
+        console.log("this is route")
+        res.json(await testService.updateAltImageTable())
+    } catch (err) {
+        console.log(err)
+        res.json(err)
+    }
+})
+
 module.exports = {
     router
 }

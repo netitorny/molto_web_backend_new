@@ -12,6 +12,7 @@ module.exports = ( sequelize , Sequelize) => {
             main: { type: Sequelize.BOOLEAN(), allowNull: true, field: 'main' },
             folder: { type: Sequelize.STRING(100), allowNull: true, field: 'folder' },
             out_of_stock: { type: Sequelize.BOOLEAN(), allowNull: true, field: 'out_of_stock' },
+            alt: { type: Sequelize.STRING(100), allowNull: true, field: 'alt' },
         },
     {
         tableName: 'image' 
