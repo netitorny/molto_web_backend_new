@@ -1,6 +1,6 @@
 const db = require('./../config/sqlconfig')
 const { QueryTypes } = require('sequelize')
-const {test, products, image, catagories } = db
+const {test, products, image, catagories, reviews_image } = db
 db.sequelize.sync()
 
 async function find(){
@@ -42,7 +42,7 @@ async function updateAltImageTable(){
         })
         
         for(let i = 0;i<img_id.length;i++){
-            let test_alt = 'test '+i
+            let test_alt = 'product image alt '+i
             console.log(test_alt);
             await image.update(
                 {
@@ -64,8 +64,39 @@ async function updateAltImageTable(){
     }
 }
 
+async function updateAltReviewsImageTable(){
+    try {
+        console.log('service');
+        let img_id = await reviews_image.findAll({
+            attributes:['image_id'],
+            raw:true
+        })
+        
+        for(let i = 0;i<img_id.length;i++){
+            let test_alt = 'reviews image alt '+i
+            console.log(test_alt);
+            await reviews_image.update(
+                {
+                    alt:test_alt
+                },
+                {
+                    where:{
+                        image_id:img_id[i].image_id
+                    }
+                }
+            )
+            console.log(img_id[i].image_id,'::',test_alt)
+        }
+        console.log('succeed');
+        return 'succeed'
+
+    } catch (error) {
+        console.log(error.message);
+    }
+}
 module.exports ={
     find,
     findByOne,
-    updateAltImageTable
+    updateAltImageTable,
+    updateAltReviewsImageTable
 }

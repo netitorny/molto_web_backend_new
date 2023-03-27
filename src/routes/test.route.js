@@ -33,6 +33,16 @@ router.patch('/update-alt-image-table', async (req,res) => {
     }
 })
 
+router.patch('/update-alt-reviews-image-table', async (req,res) => {
+    try {
+        console.log("this is route")
+        res.json(await testService.updateAltReviewsImageTable())
+    } catch (err) {
+        console.log(err)
+        res.json(err)
+    }
+})
+
 module.exports = {
     router
 }
