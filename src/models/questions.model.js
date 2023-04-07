@@ -15,7 +15,14 @@ module.exports = ( sequelize , Sequelize) => {
             img: { type: Sequelize.STRING(100), allowNull: true, field: 'img' },
             img_en: { type: Sequelize.STRING(100), allowNull: true, field: 'img_en' },
             img_cn: { type: Sequelize.STRING(100), allowNull: true, field: 'img_cn' },
-            
+            slug: { type: Sequelize.STRING(150), allowNull: true, field: 'slug' },
+            alt: { type: Sequelize.STRING(150), allowNull: true, field: 'alt' },
+            title: { type: Sequelize.STRING(500), allowNull: true, field: 'title' },
+            title_en: { type: Sequelize.STRING(500), allowNull: true, field: 'title_en' },
+            title_cn: { type: Sequelize.STRING(500), allowNull: true, field: 'title_cn' },
+            label: { type: Sequelize.STRING(500), allowNull: true, field: 'label' },
+            label_en: { type: Sequelize.STRING(500), allowNull: true, field: 'label_en' },
+            label_cn: { type: Sequelize.STRING(500), allowNull: true, field: 'label_cn' },
         },
     {
         tableName: 'questions' 
