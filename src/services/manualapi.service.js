@@ -83,8 +83,30 @@ async function slugProductsAPI(){
             ],
         })
         temp_slug = []
+        let i = 0
         results_products.forEach(element => {
-            let slug = element.name_product_en.replaceAll(' + ','-').replaceAll('(','-').replaceAll(')','').replaceAll('/','-').replaceAll('. ','').replaceAll('.-','').replaceAll(' ','-')
+            let slug = element.name_product_en
+            .replaceAll(' - (','-')
+            .replaceAll(': ','-')
+            .replaceAll(' - ','-')
+            .replaceAll('. / ','-')
+            .replaceAll(' +  ','-')
+            .replaceAll(' + ','-')
+            .replaceAll(' -','-')
+            .replaceAll(' (','-')
+            .replaceAll('(','-')
+            .replaceAll(')','')
+            .replaceAll('/','-')
+            .replaceAll('. ','')
+            .replaceAll('.-','')
+            .replaceAll('  ','-')
+            .replaceAll(' ','-')
+
+            let last_index = slug.lastIndexOf('-')
+            if(last_index == (slug.length-1)){
+                slug = slug.substring(0,last_index)
+                console.log(slug);
+            }
             temp_slug.push(
                 {
                     id_products:element.id_products,
@@ -93,18 +115,18 @@ async function slugProductsAPI(){
             )
         })
 
-        for(i = 0;i<results_products.length;i++){
-            await products.update(
-                {
-                    slug_product:temp_slug[i].slug_product.toLowerCase()
-                },
-                {
-                    where:{
-                        id_products : temp_slug[i].id_products
-                    }
-                }
-            )
-        }
+        // for(i = 0;i<results_products.length;i++){
+        //     await products.update(
+        //         {
+        //             slug_product:temp_slug[i].slug_product.toLowerCase()
+        //         },
+        //         {
+        //             where:{
+        //                 id_products : temp_slug[i].id_products
+        //             }
+        //         }
+        //     )
+        // }
 
         
         return temp_slug

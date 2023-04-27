@@ -23,6 +23,7 @@ module.exports = ( sequelize , Sequelize) => {
             label: { type: Sequelize.STRING(500), allowNull: true, field: 'label' },
             label_en: { type: Sequelize.STRING(500), allowNull: true, field: 'label_en' },
             label_cn: { type: Sequelize.STRING(500), allowNull: true, field: 'label_cn' },
+            seo_descriptions: { type: Sequelize.STRING(200), allowNull: true, field: 'seo_descriptions' },
         },
     {
         tableName: 'questions' 

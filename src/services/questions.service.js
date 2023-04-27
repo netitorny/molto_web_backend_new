@@ -61,7 +61,7 @@ async function getTitleKnowledge(slug,language){
     try {
         console.log("this is question/get-title-knowledge service")
         console.log("lang ::",language,':::slug ::',slug)
-        let attributes_arr = ['id']
+        let attributes_arr = ['id','seo_descriptions']
         if(language == 'en'){
             attributes_arr.push(['title_en','title'])
         }
@@ -89,7 +89,7 @@ async function findKnowledgeByID(id,language){
     try {
         console.log("this is question/find-knowledge-by-id service")
         console.log("lang ::",language,':::id ::',id)
-        let attributes_arr = ['id','slug','alt']
+        let attributes_arr = ['id','slug','alt','seo_descriptions']
         if(language == 'en'){
             attributes_arr.push(['question_en','question'])
             attributes_arr.push(['topic_en','topic'])
