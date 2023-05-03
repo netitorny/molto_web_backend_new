@@ -7,6 +7,7 @@ const fileService = require('../services/file.service')
 router.post('/', async (req,res) => {
     try {
         console.log("this is file/ route")
+        console.log('sss',req.body);
         // const form = new formidable.IncomingForm()
         const form = formidable({multiples:true})
         // form.multiples = true
@@ -27,7 +28,9 @@ router.post('/', async (req,res) => {
         // console.log('file :: ',file)
         // console.log('form :: ',form)
 
-        // res.json(await fileService.upload(files,fields))
+//         res.json(await fileService.upload(files,fields))
+            // res.json(await fileService.upload())
+
     } catch (err) {
         console.log(err)
         res.json(err)

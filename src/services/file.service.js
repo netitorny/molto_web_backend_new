@@ -4,7 +4,8 @@ const { file } = db
 
 db.sequelize.sync()
 
-async function upload(image,form){
+// async function upload(image,form){
+async function upload(){
     console.log('this is file/ service')
 
 
