@@ -9,9 +9,9 @@ module.exports = ( sequelize , Sequelize) => {
             topic: { type: Sequelize.STRING(500), allowNull: true, field: 'topic' },
             topic_en: { type: Sequelize.STRING(500), allowNull: true, field: 'topic_en' },
             topic_cn: { type: Sequelize.STRING(500), allowNull: true, field: 'topic_cn' },
-            lists: { type: Sequelize.JSON(), allowNull: true, field: 'lists' },
-            lists_en: { type: Sequelize.JSON(), allowNull: true, field: 'lists_en' },
-            lists_cn: { type: Sequelize.JSON(), allowNull: true, field: 'lists_cn' },
+            lists: { type: Sequelize.TEXT, allowNull: true, field: 'lists' },
+            lists_en: { type: Sequelize.TEXT, allowNull: true, field: 'lists_en' },
+            lists_cn: { type: Sequelize.TEXT, allowNull: true, field: 'lists_cn' },
             img: { type: Sequelize.STRING(100), allowNull: true, field: 'img' },
             img_en: { type: Sequelize.STRING(100), allowNull: true, field: 'img_en' },
             img_cn: { type: Sequelize.STRING(100), allowNull: true, field: 'img_cn' },
@@ -24,6 +24,8 @@ module.exports = ( sequelize , Sequelize) => {
             label_en: { type: Sequelize.STRING(500), allowNull: true, field: 'label_en' },
             label_cn: { type: Sequelize.STRING(500), allowNull: true, field: 'label_cn' },
             seo_descriptions: { type: Sequelize.STRING(200), allowNull: true, field: 'seo_descriptions' },
+            enable: { type: Sequelize.BOOLEAN(), allowNull: true, field: 'enable' },
+            order: { type: Sequelize.INTEGER(), allowNull: true, field: 'order' },
         },
     {
         tableName: 'questions' 

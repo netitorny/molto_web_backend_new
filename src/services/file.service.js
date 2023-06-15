@@ -19,7 +19,22 @@ async function upload(){
 
 }
 
+async function uploadKnowledgeCover(){
+    console.log('this is file/service ::: uploadKnowledgeCover')
+
+
+
+
+    try {
+        
+    } catch (err) {
+        console.log(err)
+    }
+
+}
+
 
 module.exports ={
     upload,
+    uploadKnowledgeCover
 }
