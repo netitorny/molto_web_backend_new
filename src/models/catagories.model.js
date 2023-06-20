@@ -10,6 +10,10 @@ module.exports = ( sequelize , Sequelize) => {
             order: { type: Sequelize.INTEGER(), allowNull: true, field: 'order' },
             slug_catagory: { type: Sequelize.STRING(150), allowNull: true, field: 'slug_catagory' },
             alt: { type: Sequelize.STRING(100), allowNull: true, field: 'alt' },
+            title: { type: Sequelize.STRING(500), allowNull: true, field: 'title' },
+            title_en: { type: Sequelize.STRING(500), allowNull: true, field: 'title_en' },
+            title_cn: { type: Sequelize.STRING(500), allowNull: true, field: 'title_cn' },
+            seo_descriptions: { type: Sequelize.STRING(500), allowNull: true, field: 'seo_descriptions' },
         },
     {
         tableName: 'catagories' 

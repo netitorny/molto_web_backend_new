@@ -35,12 +35,13 @@ router.get('/home_catagories', async (req,res) => {
     }
 })
 
-router.get('/get-title-catagory', async (req,res) => {
+router.get('/get-title-catagory/:lang', async (req,res) => {
     try {
         console.log("this is catagories/get-title-catagory route")
         var slug = JSON.parse(req.query.slug)
+        var language = req.params.lang
         console.log(slug)
-        res.json(await catagoriesService.getTitleCatagory(slug))
+        res.json(await catagoriesService.getTitleCatagory(slug,language))
     } catch (err) {
         console.log(err)
         res.json(err)

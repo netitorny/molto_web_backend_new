@@ -74,11 +74,22 @@ async function homeCatagories(){
     }
 }
 
-async function getTitleCatagory(slug){
+async function getTitleCatagory(slug,language){
     try {
         console.log("this is catagories/get-title-catagory route")
+        console.log(slug);
+        let attributes_arr = ['id_catagories','name_catagories','seo_descriptions']
+        if(language == 'en'){
+            attributes_arr.push(['title_en','title'])
+        }
+        else if(language == 'cn'){
+            attributes_arr.push(['title_cn','title'])
+        }
+        else{
+            attributes_arr.push(['title','title'])
+        }
         let results = await catagories.findOne({
-            attributes:['id_catagories','name_catagories'],
+            attributes:attributes_arr,
             where:{
                 slug_catagory:slug
             }

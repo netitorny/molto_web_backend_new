@@ -1,6 +1,6 @@
 const db = require('./../config/sqlconfig')
 const { QueryTypes } = require('sequelize')
-const { catagories, products } = db
+const { catagories, products, image} = db
 
 db.sequelize.sync()
 
@@ -136,7 +136,49 @@ async function slugProductsAPI(){
 
 }
 
+async function updateAltImage(){
+    try {
+        console.log('updateAltImage service');
+
+        let results = await products.findAll({
+            include:[
+                {
+                    model:image
+                }
+            ]
+        })
+        let i = 1
+        results.forEach(product => {
+            // let new_alt = product.dataValues.name_product
+            product.dataValues.images.forEach(async image => {
+                // image.dataValues.shelves_color
+                if(image.dataValues.shelves_color){
+                    let new_alt = product.dataValues.name_product + '(' + image.dataValues.shelves_color + ')'
+                    console.log(i,new_alt);
+                     await image.update(
+                        {
+                            alt : new_alt
+                        },
+                        // {
+                        //     where:{
+                        //         id_products:image.dataValues.id_products
+                        //     }
+                        // }
+                    )
+                }
+                i++
+            })
+        })
+
+        // console.log(results[0].dataValues.images[0].dataValues.shelves_color);
+        return results
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
 module.exports ={
     slugCategoriesAPI,
-    slugProductsAPI
+    slugProductsAPI,
+    updateAltImage
 }

@@ -21,6 +21,15 @@ router.get('/slug-products-api', async (req,res) => {
         res.json(err)
     }
 })
+router.patch('/update-alt-image-api', async (req,res) => {
+    try {
+        console.log("this is update-alt-image-api route")
+        res.json(await manualapiService.updateAltImage())
+    } catch (err) {
+        console.log(err)
+        res.json(err)
+    }
+})
 
 module.exports = {
     router
