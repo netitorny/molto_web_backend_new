@@ -25,10 +25,11 @@ router.get('/filters', async (req,res) => {
     }
 })
 
-router.get('/home_catagories', async (req,res) => {
+router.get('/home_catagories/:lang', async (req,res) => {
     try {
+        let language = req.params.lang
         console.log("this is catagories/home_catagories route")
-        res.json(await catagoriesService.homeCatagories())
+        res.json(await catagoriesService.homeCatagories(language))
     } catch (err) {
         console.log(err)
         res.json(err)

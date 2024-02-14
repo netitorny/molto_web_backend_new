@@ -250,6 +250,7 @@ async function find(language) {
     var find_main_promotions = await promotions.findAll({
       where: {
         month: month,
+        enable:true
       },
       attributes: arr_attribute,
       order: [[db.Sequelize.col("month"), "ASC"]],
@@ -284,7 +285,8 @@ async function find(language) {
           month:{
             [Op.not]: month,
             [Op.eq]: i+1
-          }
+          },
+          enable:true
         },
         attributes: arr_attribute,
         raw:true,

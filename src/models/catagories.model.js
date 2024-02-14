@@ -14,6 +14,9 @@ module.exports = ( sequelize , Sequelize) => {
             title_en: { type: Sequelize.STRING(500), allowNull: true, field: 'title_en' },
             title_cn: { type: Sequelize.STRING(500), allowNull: true, field: 'title_cn' },
             seo_descriptions: { type: Sequelize.STRING(500), allowNull: true, field: 'seo_descriptions' },
+            name_descriptions: { type: Sequelize.STRING(500), allowNull: true, field: 'name_descriptions' },
+            name_descriptions_en: { type: Sequelize.STRING(500), allowNull: true, field: 'name_descriptions_en' },
+            name_descriptions_cn: { type: Sequelize.STRING(500), allowNull: true, field: 'name_descriptions_cn' },
         },
     {
         tableName: 'catagories' 

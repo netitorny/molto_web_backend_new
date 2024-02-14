@@ -12,6 +12,7 @@ module.exports = ( sequelize , Sequelize) => {
             month: { type: Sequelize.INTEGER(), allowNull: true, field: 'month' },
             alt: { type: Sequelize.STRING(100), allowNull: true, field: 'alt' },
             date_order:{ type: Sequelize.DATE,allowNull: true, field: 'date_order' },
+            enable: { type: Sequelize.BOOLEAN(), allowNull: true,default:true, field: 'enable' },
         },
     {
         tableName: 'promotions' 

@@ -52,9 +52,20 @@ async function findByCategoryID(id_catagories){
     }
 }
 
-async function homeCatagories(){
+async function homeCatagories(language){
     try {
         console.log("this is catagories/home_catagories")
+        console.log('language homecat : ',language);
+        let attributes_arr = ['id_catagories','name_catagories','image_catagories','slug_catagory']
+        if(language == 'en'){
+            attributes_arr.push(['name_descriptions_en','name_descriptions'])
+        }
+        else if(language == 'cn'){
+            attributes_arr.push(['name_descriptions_cn','name_descriptions'])
+        }
+        else{
+            attributes_arr.push(['name_descriptions','name_descriptions'])
+        }
         var results = await catagories.findAll({
             where:{
                 main : {
@@ -64,7 +75,8 @@ async function homeCatagories(){
             order:[
                 [ db.Sequelize.col('main'), 'ASC']
                 // [products,'id_products','DESC']
-            ]
+            ],
+            attributes:attributes_arr
         })
         // console.log('results :: ',results)
         return results
