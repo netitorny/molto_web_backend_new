@@ -38,20 +38,20 @@ async function login(user) {
     // });
 
     //---
-    let user = await sim_user.findOne({
+    let _user = await sim_user.findOne({
         where: {
             email: normalizedEmail
         }
     })
 
-    if (user) {
-        const passwordMatch = await bcrypt.compare(password, user.password);
+    if (_user) {
+        const passwordMatch = await bcrypt.compare(password, _user.password);
         if (!passwordMatch) {
             return res.status(401).json({ message: "อีเมล หรือ รหัสผ่านไม่ถูกต้อง" });
         }
 
         // Generate JWT token
-        const token = _jwt.signToken({ email: user.email });
+        const token = _jwt.signToken({ email: _user.email });
         return { token: token };
     } else {
         return { message: 'error' };
@@ -95,13 +95,13 @@ async function register(user) {
     // });
 
     //-------------------
-    let user = await sim_user.findOne({
+    let _user = await sim_user.findOne({
         where: {
             email: normalizedEmail
         }
     })
 
-    if (user) {
+    if (_user) {
         return { message: 'มีข้อมูลผู้ใช้นี้อยู่แล้ว' };
 
     } else {
@@ -112,7 +112,7 @@ async function register(user) {
         const create = await sim_user.create({ name: name, surname: surname, email: email, phoneNum: phoneNum, password: hashedPassword })
 
         if (create) {
-            const token = _jwt.signToken({ email: user.email });
+            const token = _jwt.signToken({ email: _user.email });
             return { token: token };
         } else {
             return { message: 'error' };
