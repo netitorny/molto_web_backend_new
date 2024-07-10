@@ -17,9 +17,17 @@ module.exports = ( sequelize , Sequelize) => {
             name_descriptions: { type: Sequelize.STRING(500), allowNull: true, field: 'name_descriptions' },
             name_descriptions_en: { type: Sequelize.STRING(500), allowNull: true, field: 'name_descriptions_en' },
             name_descriptions_cn: { type: Sequelize.STRING(500), allowNull: true, field: 'name_descriptions_cn' },
+            // createdAt: { type: Sequelize.DATE, allowNull: false, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'), field: 'created_at' },
+            // updatedAt: { type: Sequelize.DATE, allowNull: false, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'), field: 'updated_at' },
+            // deletedAt: { type: Sequelize.DATE, allowNull: true, field: 'deleted_at' }
         },
     {
-        tableName: 'catagories' 
+        tableName: 'catagories' ,
+        createdAt: 'created_at',
+        updatedAt: 'updated_at',
+        deletedAt: 'deleted_at',
+        paranoid: true,
+        timestamps: true,
     }
   );
   

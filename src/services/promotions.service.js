@@ -19,32 +19,32 @@ let month_th = [
   "ธันวาคม",
 ];
 let month_en = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-let month_cn=[
-    "一月",
-    "二月",
-    "三月",
-    "四月",
-    "五月",
-    "六月",
-    "七月",
-    "八月",
-    "九月",
-    "十月",
-    "十一月",
-    "十二月",
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+let month_cn = [
+  "一月",
+  "二月",
+  "三月",
+  "四月",
+  "五月",
+  "六月",
+  "七月",
+  "八月",
+  "九月",
+  "十月",
+  "十一月",
+  "十二月",
 ]
 
 //! :: old query
@@ -128,7 +128,7 @@ let month_cn=[
 //             main_month = month_en[i];
 //           }
 //         }
-  
+
 //         var sub_month = [];
 //         for (var sub of sub_promotions) {
 //           var test = month_en.find((m, index) => {
@@ -146,7 +146,7 @@ let month_cn=[
 //         unique_sub_month = [...new Set(sub_month)]
 //         unique_all_month = [...new Set(all_month)]
 //     }
-    
+
 //     else {
 //       var main_month;
 //       console.log("main_promotions :: ", main_promotions[0].month);
@@ -211,7 +211,7 @@ let month_cn=[
 //     //   }, {});
 
 //     //   console.log(result);
-    
+
 //     //     return {
 //     //   main_promotions: main_promotions,
 //     //   sub_promotions: sub_promotions,
@@ -225,12 +225,34 @@ let month_cn=[
 //todo:test
 //! :: ---------
 
+async function all() {
+  try {
+    console.log('get all promotions service by stop');
+    var all = await promotions.findAll({
+      order: [['date_order', 'DESC']]
+    })
+
+    return { status: 'success', data: all }
+  } catch (err) {
+    console.log(err.message);
+    return { status: 'error' }
+  }
+}
+
+async function getOne(id) {
+  console.log('get one promotions service by stop');
+  var one = await promotions.findByPk(id)
+
+  return { status: 'success', data: one }
+}
+
+
 async function find(language) {
   try {
     const date = new Date();
     console.log("this is promotions/:language service");
     console.log("language :", language);
-    var arr_attribute = ["id", "month","alt","date_order"];
+    var arr_attribute = ["id", "month", "alt", "date_order"];
 
     if (language == "en") {
       arr_attribute.push(
@@ -252,73 +274,73 @@ async function find(language) {
     var find_main_promotions = await promotions.findAll({
       where: {
         month: month,
-        enable:true
+        enable: true
       },
       attributes: arr_attribute,
       order: [[db.Sequelize.col("month"), "ASC"]],
-      raw:true
+      raw: true
     });
     let main_promotions
     if (language == "en") {
       main_promotions = {
-        month:month_en[date.getMonth()],
-        date:find_main_promotions[0].date_order,
-        promotions:find_main_promotions        
+        month: month_en[date.getMonth()],
+        date: find_main_promotions[0].date_order,
+        promotions: find_main_promotions
       }
     } else if (language == "cn") {
       main_promotions = {
-        month:month_cn[date.getMonth()],
-        date:find_main_promotions[0].date_order,
-        promotions:find_main_promotions        
+        month: month_cn[date.getMonth()],
+        date: find_main_promotions[0].date_order,
+        promotions: find_main_promotions
       }
     } else {
       main_promotions = {
-        month:month_th[date.getMonth()],
-        date:find_main_promotions[0].date_order,
-        promotions:find_main_promotions        
+        month: month_th[date.getMonth()],
+        date: find_main_promotions[0].date_order,
+        promotions: find_main_promotions
       }
     }
     //*-----sub promotions
     let sub_promotions = []
-    for(let i=0;i<month_th.length;i++){
+    for (let i = 0; i < month_th.length; i++) {
       let month_promotions = await promotions.findAll({
         where: {
           // month:i+1
-          month:{
+          month: {
             [Op.not]: month,
-            [Op.eq]: i+1
+            [Op.eq]: i + 1
           },
-          enable:true
+          enable: true
         },
         attributes: arr_attribute,
-        raw:true,
+        raw: true,
         // order: [[db.Sequelize.col("date_order"), "DESC"]]
       })
-      if(month_promotions.length > 0){
+      if (month_promotions.length > 0) {
         if (language == "en") {
           sub_promotions.push({
-            month:month_en[i],
-            date:month_promotions[0].date_order,
-            promotions:month_promotions
+            month: month_en[i],
+            date: month_promotions[0].date_order,
+            promotions: month_promotions
           })
         } else if (language == "cn") {
           sub_promotions.push({
-            month:month_cn[i],
-            date:month_promotions[0].date_order,
-            promotions:month_promotions
+            month: month_cn[i],
+            date: month_promotions[0].date_order,
+            promotions: month_promotions
           })
         } else {
           sub_promotions.push({
-            month:month_th[i],
-            date:month_promotions[0].date_order,
-            promotions:month_promotions
+            month: month_th[i],
+            date: month_promotions[0].date_order,
+            promotions: month_promotions
           })
         }
       }
     }
     sub_promotions.sort((a, b) => {
       let da = new Date(a.date),
-          db = new Date(b.date);
+        db = new Date(b.date);
       return db - da;
     });
 
@@ -371,6 +393,58 @@ async function find(language) {
     console.log(err.message);
   }
 }
+
+async function add(body, files) {
+  try {
+    console.log("this is promotions/:add service");
+    body.main = 0
+    body.order = await promotions.count() + 1
+    const promotion = await promotions.create(body)
+
+    return { status: 'success', data: promotion }
+
+  } catch (err) {
+    console.log(err.message);
+    return { status: 'error' }
+  }
+}
+
+async function edit(body) {
+  try {
+    let original_body = body
+    console.log("this is promotions/edit");
+    let id = body.id
+    delete body.id
+
+    const promotion = await promotions.update(body, { where: { id: id } })
+
+    console.log('promotion: ', promotion);
+
+    return { status: 'success', data: original_body }
+  } catch (err) {
+    console.log(err.message);
+    return { status: 'error' }
+  }
+}
+
+async function remove(id) {
+  try {
+    console.log('id: ',id);
+    const removed = await promotions.destroy({ where: { id: id } })
+    console.log('removed: ', removed);
+    return { status: 'success', data: removed }
+
+  } catch (err) {
+    console.log(err.message);
+    return { status: 'error' }
+  }
+}
+
 module.exports = {
+  all,
   find,
+  add,
+  edit,
+  getOne,
+  remove
 };
