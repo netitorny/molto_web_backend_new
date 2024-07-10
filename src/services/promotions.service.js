@@ -3,7 +3,7 @@ const { QueryTypes, Op } = require("sequelize");
 const { promotions } = db;
 db.sequelize.sync();
 
-const date = new Date();
+// const date = new Date();
 let month_th = [
   "มกราคม",
   "กุมภาพันธ์",
@@ -227,6 +227,7 @@ let month_cn=[
 
 async function find(language) {
   try {
+    const date = new Date();
     console.log("this is promotions/:language service");
     console.log("language :", language);
     var arr_attribute = ["id", "month","alt","date_order"];
@@ -246,6 +247,7 @@ async function find(language) {
     }
     console.log("arr_attribute => ", arr_attribute);
     month = date.getMonth() + 1;
+    console.log('month: ', month);
     //*-----main promotions
     var find_main_promotions = await promotions.findAll({
       where: {
@@ -361,6 +363,7 @@ async function find(language) {
     return {
       main_promotions: main_promotions,
       sub_promotions: sub_promotions,
+      date:date
       // all_promotions: all_promotions,
     };
 
