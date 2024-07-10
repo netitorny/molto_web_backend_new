@@ -1,4 +1,4 @@
-module.exports = ( sequelize , Sequelize) => {
+module.exports = (sequelize, Sequelize) => {
     const promotions = sequelize.define(
         'promotions',
         {
@@ -11,13 +11,21 @@ module.exports = ( sequelize , Sequelize) => {
             image_cn: { type: Sequelize.STRING(100), allowNull: true, field: 'image_cn' },
             month: { type: Sequelize.INTEGER(), allowNull: true, field: 'month' },
             alt: { type: Sequelize.STRING(100), allowNull: true, field: 'alt' },
-            date_order:{ type: Sequelize.DATE,allowNull: true, field: 'date_order' },
-            enable: { type: Sequelize.BOOLEAN(), allowNull: true,default:true, field: 'enable' },
+            date_order: { type: Sequelize.DATE, allowNull: true, field: 'date_order' },
+            enable: { type: Sequelize.BOOLEAN(), allowNull: true, default: true, field: 'enable' },
+            // createdAt: { type: Sequelize.DATE, allowNull: false, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'), },
+            // updatedAt: { type: Sequelize.DATE, allowNull: false, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'), },
+            // deletedAt: { type: Sequelize.DATE, allowNull: true, }
         },
-    {
-        tableName: 'promotions' 
-    }
-  );
-  
-  return promotions;
+        {
+            tableName: 'promotions',
+            createdAt: 'created_at',
+            updatedAt: 'updated_at',
+            deletedAt: 'deleted_at',
+            paranoid: true,
+            timestamps: true,
+        }
+    );
+
+    return promotions;
 }

@@ -15,7 +15,12 @@ module.exports = ( sequelize , Sequelize) => {
             alt: { type: Sequelize.STRING(150), allowNull: true, field: 'alt' },
         },
     {
-        tableName: 'image' 
+        tableName: 'image',
+        createdAt: 'created_at',
+        updatedAt: 'updated_at',
+        deletedAt: 'deleted_at',
+        paranoid: true,
+        timestamps: true,
     }
   );
   

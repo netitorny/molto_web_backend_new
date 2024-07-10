@@ -29,7 +29,12 @@ module.exports = ( sequelize , Sequelize) => {
             order: { type: Sequelize.INTEGER(), allowNull: true, field: 'order' },
         },
     {
-        tableName: 'products' 
+        tableName: 'products' ,
+        createdAt: 'created_at',
+        updatedAt: 'updated_at',
+        deletedAt: 'deleted_at',
+        paranoid: true,
+        timestamps: true,
     }
   );
   
