@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const serveIndex = require("serve-index");
 const formidable = require('formidable');
+const compression = require("compression");
+const bodyParser = require("body-parser");
 
 const app = express();
 
@@ -14,6 +16,8 @@ app.use(
         origin: "*",
     })
 )
+app.use(bodyParser.json());
+app.use(compression());
 
 app.use(express.json());
 
@@ -30,6 +34,7 @@ const reviewsRouter = require('././src/routes/reviews.route')
 const reviewsImageRouter = require('./src/routes/reviews_image.route')
 const promotionsRouter = require('./src/routes/promotions.route')
 const manualAPIRouter = require('./src/routes/manualapi.route')
+const simRouter = require('./src/routes/sim.route')
 //================================================
 app.use('/test', testRouter.router)
 app.use('/questions', questionsRouter.router)
@@ -43,6 +48,7 @@ app.use('/reviews', reviewsRouter.router)
 app.use('/reviews_image', reviewsImageRouter.router)
 app.use('/promotions', promotionsRouter.router)
 app.use('/manualAPI', manualAPIRouter.router)
+app.use('/sim', simRouter.router)
 // app.use('/jwt', jwtRouter.router)
 
 //for public path

@@ -40,6 +40,7 @@ const sequelize = new Sequelize(
   db.reviews = require('../models/reviews.model')(sequelize, Sequelize)
   db.reviews_image =  require('../models/reviews_image.model')(sequelize, Sequelize)
   db.promotions = require('../models/promotions.model')(sequelize, Sequelize)
+  db.sim_user = require('../models/sim_user.model')(sequelize, Sequelize)
 
 
 //relations
