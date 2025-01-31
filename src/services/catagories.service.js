@@ -31,7 +31,7 @@ async function find() {
         var results = await catagories.findAll({
             where: {
                 id_catagories: {
-                    [db.op.not]: 27
+                    [db.op.not]: 43
                 },
                 order: {
                     [db.op.not]: null
@@ -90,7 +90,7 @@ async function homeCatagories(language) {
     try {
         console.log("this is catagories/home_catagories")
         console.log('language homecat : ', language);
-        let attributes_arr = ['id_catagories', 'name_catagories', 'image_catagories', 'slug_catagory']
+        let attributes_arr = ['id_catagories', 'name_catagories', 'image_catagories', 'slug_catagory','folder']
         if (language == 'en') {
             attributes_arr.push(['name_descriptions_en', 'name_descriptions'])
         }

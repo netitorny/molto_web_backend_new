@@ -6,6 +6,7 @@ module.exports = ( sequelize , Sequelize) => {
             name_catagories: { type: Sequelize.STRING(150), allowNull: true, field: 'name_catagories' },
             image_catagories: { type: Sequelize.STRING(150), allowNull: true, field: 'image_catagories' },
             banner: { type: Sequelize.STRING(150), allowNull: true, field: 'banner' },
+            folder: { type: Sequelize.STRING(500), allowNull: true, field: 'folder' },
             main: { type: Sequelize.INTEGER(), allowNull: true, field: 'main' },
             order: { type: Sequelize.INTEGER(), allowNull: true, field: 'order' },
             slug_catagory: { type: Sequelize.STRING(150), allowNull: true, field: 'slug_catagory' },

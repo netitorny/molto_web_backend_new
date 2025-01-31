@@ -292,7 +292,7 @@ async function filtersProductsWithSale(id_catagories, language) {
 
             // },
             where: {
-                id_catagories: 27,
+                id_catagories: 43,
                 enable: { [db.op.ne]: 0 }
 
             },
